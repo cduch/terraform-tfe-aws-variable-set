@@ -3,6 +3,14 @@ provider "tfe" {
   token    = var.apitoken
 }
 
+data "external" "env" {
+  program = ["${path.module}/env.sh"]
+}
+
+output "env" {
+  value = data.external.env.result
+}
+
 resource "tfe_organization" "organization" {
   name  = var.organization_name
   email = var.organization_email
@@ -17,7 +25,7 @@ resource "tfe_variable_set" "variableset" {
 
 resource "tfe_variable" "awsaccesskeyid" {
   key             = "AWS_ACCESS_KEY_ID"
-  value           = "my_value_name"
+  value           = data.external.env.result["AWS_ACCESS_KEY_ID"]
   category        = "env"
   description     = "AWS ACCESS KEY ID"
   sensitive       = true

@@ -9,7 +9,3 @@ variable "variableset_name" {
 variable "organization_name" {
   description = "Name of the organization"
 }
-
-variable "organization_email" {
-  description = "E-Mail of the organization admin"
-}

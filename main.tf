@@ -11,16 +11,11 @@ output "env" {
   value = data.external.env.result
 }
 
-resource "tfe_organization" "organization" {
-  name  = var.organization_name
-  email = var.organization_email
-}
-
 resource "tfe_variable_set" "variableset" {
   name         = var.variableset_name
   description  = "Variable set applied to all workspaces."
   global       = true
-  organization = tfe_organization.organization.name
+  organization = var.organization_name
 }
 
 resource "tfe_variable" "awsaccesskeyid" {

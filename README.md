@@ -1,3 +1,6 @@
+# !!! DEPRECATED: doormat can now push creds into variable-set directly
+
+
 # Creates a variable set in an organization with AWS credentials from the current workspace
 
 It uses the following ENV vars from it's own workspace and recreates them in a variable set.
